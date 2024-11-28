@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgkgodlqg8cgf"]
+[gd_scene load_steps=15 format=3 uid="uid://cgkgodlqg8cgf"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_8euss"]
 [ext_resource type="Texture2D" uid="uid://cyhx4ofvjvucd" path="res://Assets/atlas_walls_low-16x16.png" id="1_kt0dq"]
@@ -1082,7 +1082,11 @@ sources/3 = SubResource("TileSetAtlasSource_pehvj")
 size = Vector2(41, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksgpm"]
-size = Vector2(29, 18)
+size = Vector2(43, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_di7ft"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0l743"]
 
 [node name="Room1" type="Node2D"]
 script = ExtResource("1_8euss")
@@ -1091,12 +1095,20 @@ script = ExtResource("1_8euss")
 tile_set = SubResource("TileSet_py0ee")
 format = 2
 layer_0/name = "Walls"
-layer_0/tile_data = PackedInt32Array(-196613, 524288, 0, -196612, 589824, 0, -196611, 655360, 0, -196610, 589825, 1, -262143, 655361, 1, -262142, 589824, 0, -262141, 655360, 0, -262140, 720896, 0, -196604, 720896, 2, -131068, 720896, 2, -65532, 720896, 2, 4, 720896, 2, -131077, 0, 0, -65541, 0, 1, -5, 0, 1, 196603, 524288, 3, 196604, 589824, 3, 131076, 720896, 3, 65540, 720896, 2, 131075, 0, 3, 131074, 589824, 3, 131073, 65537, 7, 131067, 0, 1, 65531, 0, 1, 196605, 0, 3, 196606, 196609, 7, 131070, 196609, 6, 65537, 65537, 6, -327679, 655361, 0, -262146, 589825, 0)
+layer_0/tile_data = PackedInt32Array(-196613, 65536, 0, -196612, 131072, 3, -196611, 131072, 3, -262142, 131072, 3, -262141, 131072, 3, -262140, 196608, 0, -196604, 0, 1, -131068, 0, 2, 4, 0, 0, -131077, 0, 0, -65541, 0, 2, 196603, 524288, 3, 196604, 589824, 3, 131076, 720896, 3, 65540, 0, 1, 131075, 0, 3, 131074, 589824, 3, 131073, 65536, 3, 131067, 0, 1, 65531, 0, 0, 196605, 0, 3, 196606, 196608, 3, -196610, 196608, 3, -262143, 65536, 3)
 layer_1/name = "Ground"
 layer_1/z_index = -99
-layer_1/tile_data = PackedInt32Array(131067, 262146, 6, 65531, 262146, 2, -5, 262146, 5, -65541, 262146, 2, -131077, 262146, 2, -196604, 327682, 2, -131068, 327682, 5, -65532, 327682, 6, 4, 327682, 6, 65540, 327682, 2, 131068, 2, 1, 65532, 2, 0, -4, 2, 0, -65540, 2, 0, -131076, 131074, 0, -131075, 2, 0, -131074, 2, 0, -131073, 2, 0, -196608, 2, 0, -196607, 2, 0, -196606, 2, 0, -131069, 2, 0, -65533, 131074, 0, 3, 2, 0, 65539, 2, 0, 65538, 2, 0, 65537, 2, 0, 1, 131074, 0, 2, 2, 0, -65534, 65538, 2, -131070, 65538, 1, -196605, 2, 0, -131071, 2, 1, -131072, 2, 0, -65537, 2, 0, -65538, 131074, 0, -2, 2, 0, -3, 2, 0, -1, 2, 0, -65536, 2, 0, -65535, 2, 2, -65539, 2, 0, 65533, 131074, 1, 131069, 2, 0, 131070, 2, 0, 131071, 131074, 0, 65536, 2, 0, 0, 2, 0, 65535, 2, 0, 65534, 2, 0, 196606, 2, 0, 196607, 2, 0, 131072, 2, 0, 131073, 2, 0, -196610, 65538, 1, -196609, 65538, 1, -262144, 65538, 1, -262143, 65538, 1)
+layer_1/tile_data = PackedInt32Array(131067, 262146, 6, 65531, 262146, 2, -5, 65538, 1, -65541, 262146, 2, -131077, 262146, 2, -196604, 327682, 2, -131068, 327682, 5, -65532, 2, 0, 4, 327682, 6, 65540, 327682, 2, 131068, 2, 1, 65532, 2, 0, -4, 2, 0, -65540, 2, 0, -131076, 131074, 0, -131075, 2, 0, -131074, 2, 0, -131073, 2, 0, -196608, 2, 0, -196607, 2, 0, -196606, 2, 0, -131069, 2, 0, -65533, 131074, 0, 3, 2, 0, 65539, 2, 0, 65538, 2, 0, 65537, 2, 0, 1, 131074, 0, 2, 2, 0, -65534, 65538, 2, -131070, 65538, 1, -196605, 2, 0, -131071, 2, 1, -131072, 2, 0, -65537, 2, 0, -65538, 131074, 0, -2, 2, 0, -3, 2, 0, -1, 2, 0, -65536, 2, 0, -65535, 2, 2, -65539, 2, 0, 65533, 131074, 1, 131069, 2, 0, 131070, 2, 0, 131071, 131074, 0, 65536, 2, 0, 0, 2, 0, 65535, 2, 0, 65534, 2, 0, 196606, 2, 0, 196607, 2, 0, 131072, 2, 0, 131073, 2, 0, -196610, 65538, 1, -196609, 65538, 1, -262144, 65538, 1, -262143, 65538, 1)
 layer_2/name = "Decors"
 layer_2/tile_data = PackedInt32Array(-327678, 983041, 5, -262142, 983041, 6, -196606, 1179651, 25, -262147, 983041, 5, -196611, 983041, 6, -131075, 983041, 7, 1, 1179651, 27, -65539, 1179651, 27, -131070, 1179651, 26, -2, 1179651, 25, 65534, 1179651, 26)
+layer_3/name = "Door_left"
+layer_3/tile_data = PackedInt32Array(-5, 0, 1, -65541, 0, 1)
+layer_4/name = "Door_right"
+layer_4/tile_data = PackedInt32Array(-65532, 0, 1, -131068, 0, 1)
+layer_5/name = "Door_Top"
+layer_5/tile_data = PackedInt32Array(-196610, 131072, 3, -196609, 131072, 3, -262144, 131072, 3, -262143, 131072, 3)
+layer_6/name = "Door_Bottom"
+layer_6/tile_data = PackedInt32Array(196606, 131072, 3, 196607, 131072, 3, 131072, 131072, 3, 131073, 131072, 3)
 
 [node name="Doors" type="Node2D" parent="."]
 position = Vector2(-0.5, 48)
@@ -1110,5 +1122,18 @@ shape = SubResource("RectangleShape2D_3n565")
 [node name="door_top" type="Area2D" parent="Doors"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/door_top"]
-position = Vector2(0, -113)
+position = Vector2(1, -113)
 shape = SubResource("RectangleShape2D_ksgpm")
+
+[node name="door_right" type="Area2D" parent="Doors"]
+position = Vector2(0.5, -48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/door_right"]
+position = Vector2(81, -9)
+shape = SubResource("RectangleShape2D_di7ft")
+
+[node name="door_left" type="Area2D" parent="Doors"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/door_left"]
+position = Vector2(-80.5, -57)
+shape = SubResource("RectangleShape2D_0l743")
