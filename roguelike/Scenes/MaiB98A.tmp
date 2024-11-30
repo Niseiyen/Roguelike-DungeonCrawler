@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv837j0ydett8"]
+
+[ext_resource type="Script" path="res://dungeons_generation.gd" id="1_hnt38"]
+[ext_resource type="PackedScene" uid="uid://b68ssparvq58o" path="res://Character/player.tscn" id="2_oeiuw"]
+[ext_resource type="Script" path="res://Scripts/Camera_shake.gd" id="3_leobb"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_hnt38")
+
+[node name="Player" parent="." instance=ExtResource("2_oeiuw")]
+speed = 100.0
+
+[node name="MainCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -9)
+zoom = Vector2(7.09, 7.09)
+script = ExtResource("3_leobb")
+shake_fade = 2

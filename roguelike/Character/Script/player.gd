@@ -1,18 +1,32 @@
 extends CharacterBody2D
 
 @export var speed: float = 200.0
-var current_weapon: Node
-var weapon_holder: Node 
+var weapons: Array = []  
+var weapon_holder: Node
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+var current_weapon: Weapon = null  
+var secondary_weapon: Weapon = null
 
-# Chargé lorsque la scène est prête
 func _ready() -> void:
 	weapon_holder = $WeaponHolder
 	assert(weapon_holder != null, "WeaponHolder node is missing!")
 
-	if weapon_holder.get_child_count() > 0:
-		current_weapon = weapon_holder.get_child(0)
+	# Si le joueur a des armes, les ajouter dans l'inventaire
+	for weapon in weapon_holder.get_children():
+		if weapons.size() < 2:
+			weapons.append(weapon)
 
-# Obtenir l'input de déplacement
+	# Assure-toi qu'il y a une arme équipée
+	if weapons.size() > 0:
+		current_weapon = weapons[0]
+		update_weapon_display()  
+
+	# Cache la deuxième arme si elle existe
+	if weapons.size() > 1:
+		secondary_weapon = weapons[1]
+		secondary_weapon.hide()  
+
+# Fonction d'input de déplacement
 func _get_input() -> Vector2:
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -21,27 +35,76 @@ func _get_input() -> Vector2:
 
 # Mise à jour physique
 func _physics_process(delta: float) -> void:
-	# Déplacement
 	velocity = _get_input() * speed
 	move_and_slide()
 
-	# Gestion de la rotation de l'arme
+	# Rotation de l'arme
 	if current_weapon:
 		var mouse_position = get_global_mouse_position()
 		var angle_to_mouse = (mouse_position - global_position).angle()
 		current_weapon.rotation = angle_to_mouse
 
-	# Gestion du tir
+		if angle_to_mouse > PI / 2 or angle_to_mouse < -PI / 2:
+			current_weapon.scale.y = -1
+			animated_sprite_2d.flip_h = true
+		else:
+			current_weapon.scale.y = 1
+			animated_sprite_2d.flip_h = false
+
+	# Tirer avec l'arme actuelle
 	if Input.is_action_pressed("shoot") and current_weapon:
 		var mouse_position = get_global_mouse_position()
 		var direction = (mouse_position - global_position).normalized()
 		current_weapon.shoot(global_position, direction)
-		
 
-# Équiper une arme
-func equip_weapon(weapon_scene: PackedScene):
+# Fonction pour ajouter une arme à l'inventaire du joueur
+func add_weapon(weapon_scene: PackedScene):
+	if weapons.size() < 2:
+		var new_weapon = weapon_scene.instantiate()
+		weapons.append(new_weapon)
+		weapon_holder.add_child(new_weapon)
+		new_weapon.position = Vector2.ZERO
+		
+		# Si aucune arme n'est équipée, cette arme devient l'arme actuelle
+		if current_weapon == null:
+			current_weapon = new_weapon
+			update_weapon_display()
+		elif current_weapon != null:
+			# Si une arme est déjà équipée, on cache l'ancienne arme et on équipe la nouvelle
+			secondary_weapon = current_weapon
+			current_weapon = new_weapon
+			update_weapon_display()
+	elif weapons.size() == 2:
+		# Si le joueur a déjà 2 armes, on remplace la première
+		weapons.erase(weapons[0])
+
+		var new_weapon = weapon_scene.instantiate()
+		weapons.append(new_weapon)
+		weapon_holder.add_child(new_weapon)
+		new_weapon.position = Vector2.ZERO
+		
+		# Remplacer l'arme actuelle par la nouvelle
+		secondary_weapon = current_weapon
+		current_weapon = new_weapon
+		update_weapon_display()
+
+# Permet de basculer entre les armes avec le bouton M
+func _input(event):
+	if event.is_action_pressed("switch_weapon"):
+		if weapons.size() > 1:
+			if current_weapon == weapons[0]:
+				current_weapon = weapons[1]
+				secondary_weapon = weapons[0]
+			else:
+				current_weapon = weapons[0]
+				secondary_weapon = weapons[1]
+			update_weapon_display()
+
+# Fonction pour mettre à jour l'affichage de l'arme équipée
+func update_weapon_display():
+	# Afficher l'arme actuelle et cacher la secondaire
 	if current_weapon:
-		current_weapon.queue_free() 
-	current_weapon = weapon_scene.instance()
-	add_child(current_weapon)
-	current_weapon.position = Vector2.ZERO  
+		current_weapon.show()
+		if secondary_weapon:
+			secondary_weapon.hide()  
+		print("Arme équipée : %s" % current_weapon.name)

@@ -1,12 +1,4 @@
 extends Area2D
 
-@onready var camera_2d: Camera2D = $"../Camera2D"
-
-func _on_area_entered(area: Area2D) -> void:
-	if(area.name == "PlayerArea"):
-		camera_2d.enabled = true
-
-
-func _on_area_exited(area: Area2D) -> void:
-	if(area.name == "PlayerArea"):
-		camera_2d.enabled = false
+@onready var main_camera: Camera2D = get_node("/root/MainScene/MainCamera")
+@onready var camera_pos: Marker2D = $"../CameraPos"

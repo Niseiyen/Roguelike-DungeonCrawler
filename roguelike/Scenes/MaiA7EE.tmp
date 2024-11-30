@@ -21,7 +21,7 @@ zoom = Vector2(7.09, 7.09)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("3_leobb")
-shake_fade = 1
+shake_fade = null
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.450648, 0.450648, 0.450648, 1)

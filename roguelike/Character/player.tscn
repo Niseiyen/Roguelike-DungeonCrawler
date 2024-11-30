@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bemlk317jepeg" path="res://Assets/0x72_DungeonTilesetII_v1.7.png" id="1_lsap7"]
 [ext_resource type="Script" path="res://Character/Script/player.gd" id="1_qa02g"]
-[ext_resource type="PackedScene" uid="uid://bhlkho5h6djjm" path="res://Weapon/weapon.tscn" id="3_cxxn7"]
+[ext_resource type="PackedScene" uid="uid://0bp7x4xdiv04" path="res://Weapon/Smally.tscn" id="3_btxic"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5d86"]
 atlas = ExtResource("1_lsap7")
@@ -62,7 +62,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bw7f"]
 size = Vector2(9, 8)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 3
+collision_mask = 7
 script = ExtResource("1_qa02g")
 speed = 10.0
 
@@ -78,12 +80,15 @@ position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_5bw7f")
 
 [node name="PlayerArea" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
 position = Vector2(0.5, 12)
 shape = SubResource("RectangleShape2D_5bw7f")
 
 [node name="WeaponHolder" type="Node2D" parent="."]
-position = Vector2(-2, 12)
+position = Vector2(-1, 11)
+scale = Vector2(0.8, 0.8)
 
-[node name="Weapon" parent="WeaponHolder" instance=ExtResource("3_cxxn7")]
+[node name="Revolver" parent="WeaponHolder" instance=ExtResource("3_btxic")]
