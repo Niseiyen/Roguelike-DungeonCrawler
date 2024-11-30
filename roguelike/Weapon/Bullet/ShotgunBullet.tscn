@@ -1,0 +1,151 @@
+[gd_scene load_steps=22 format=3 uid="uid://dhgaorjna5g6u"]
+
+[ext_resource type="Script" path="res://Weapon/Script/bullet.gd" id="1_exijo"]
+[ext_resource type="Texture2D" uid="uid://bwsroawrcxfkm" path="res://Assets/Bullet Pixel 8x8 part 1 (1)/Bullet Pixel 8x8 part 1 B.png" id="2_t6oee"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhyvs"]
+atlas = ExtResource("2_t6oee")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8o5c"]
+atlas = ExtResource("2_t6oee")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6qgs"]
+atlas = ExtResource("2_t6oee")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxadi"]
+atlas = ExtResource("2_t6oee")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkqnh"]
+atlas = ExtResource("2_t6oee")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0emjk"]
+atlas = ExtResource("2_t6oee")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_upcux"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhyvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8o5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6qgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxadi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkqnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0emjk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_erhck"]
+radius = 4.0
+
+[sub_resource type="Gradient" id="Gradient_quyrj"]
+offsets = PackedFloat32Array(0, 0.516055, 1)
+colors = PackedColorArray(0.950375, 2.05579e-05, 0.996705, 1, 0.373541, 0.195413, 0.999924, 1, 0.36, 0.2, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3bqcc"]
+gradient = SubResource("Gradient_quyrj")
+
+[sub_resource type="Curve" id="Curve_b8mbx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.144184), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_idhl8"]
+curve = SubResource("Curve_b8mbx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0vcog"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 54.91
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_idhl8")
+color_ramp = SubResource("GradientTexture1D_3bqcc")
+turbulence_enabled = true
+turbulence_noise_scale = 5.107
+
+[sub_resource type="Environment" id="Environment_rhyc1"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.56
+glow_strength = 1.1
+glow_blend_mode = 0
+glow_hdr_scale = 0.22
+
+[sub_resource type="Gradient" id="Gradient_i74v0"]
+offsets = PackedFloat32Array(0, 0.518349, 1)
+colors = PackedColorArray(0.849667, 0.18, 1, 1, 0.338873, 0.0222936, 1, 1, 0.266667, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e8o5o"]
+gradient = SubResource("Gradient_i74v0")
+
+[sub_resource type="Curve" id="Curve_pyxo7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.159935), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ekgtk"]
+curve = SubResource("Curve_pyxo7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_04ob8"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 18.07
+initial_velocity_max = 66.32
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_ekgtk")
+color_ramp = SubResource("GradientTexture1D_e8o5o")
+
+[node name="ShootgunBullet" type="Area2D"]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_exijo")
+speed = 150.0
+lifetime = 2.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_upcux")
+animation = &"idle"
+autoplay = "idle"
+frame = 1
+frame_progress = 0.0359872
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_erhck")
+
+[node name="Trails" type="GPUParticles2D" parent="."]
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_0vcog")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rhyc1")
+
+[node name="ExplosionParticle" type="GPUParticles2D" parent="."]
+z_index = 6
+emitting = false
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_04ob8")
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
