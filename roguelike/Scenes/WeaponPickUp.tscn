@@ -1,9 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://bepjmqurticmm"]
+[gd_scene load_steps=9 format=3 uid="uid://bepjmqurticmm"]
 
 [ext_resource type="Script" path="res://Scripts/ItemScript/weapon_pick_up.gd" id="1_c3ad0"]
+[ext_resource type="Texture2D" uid="uid://dn6pkww1o80jo" path="res://Assets/light.png" id="2_pb6xu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqlts"]
 radius = 8.0
+
+[sub_resource type="Gradient" id="Gradient_7lrgb"]
+offsets = PackedFloat32Array(0, 0.161905, 0.361905, 0.566667, 0.719048, 0.861905, 1)
+colors = PackedColorArray(1, 0.966667, 0, 1, 1, 0, 0, 1, 0, 1, 0.366667, 1, 0, 0.95, 1, 1, 0, 0.0166669, 1, 1, 0.433333, 0, 1, 1, 0.916667, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t5bbm"]
+gradient = SubResource("Gradient_7lrgb")
+
+[sub_resource type="Curve" id="Curve_iuq65"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.197802), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_58agd"]
+curve = SubResource("Curve_iuq65")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oit4f"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, 0, 0)
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_58agd")
+color_ramp = SubResource("GradientTexture1D_t5bbm")
 
 [node name="PickUpWeapon" type="Area2D"]
 collision_layer = 4
@@ -16,6 +40,19 @@ rotation = -0.785398
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yqlts")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_oit4f")
+
+[node name="PlayerLight" type="PointLight2D" parent="."]
+z_index = 10
+color = Color(1, 0, 0.566667, 1)
+energy = 0.05
+shadow_enabled = true
+shadow_filter_smooth = 50.0
+texture = ExtResource("2_pb6xu")
+texture_scale = 0.3
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://b68ssparvq58o"]
+[gd_scene load_steps=19 format=3 uid="uid://b68ssparvq58o"]
 
 [ext_resource type="Texture2D" uid="uid://bemlk317jepeg" path="res://Assets/0x72_DungeonTilesetII_v1.7.png" id="1_lsap7"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/player.gd" id="1_qa02g"]
 [ext_resource type="PackedScene" uid="uid://0bp7x4xdiv04" path="res://Item/Weapons/Smally.tscn" id="3_btxic"]
+[ext_resource type="Texture2D" uid="uid://tbge5ekc63o" path="res://Assets/map_nodes1.png" id="4_g0x7e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5d86"]
 atlas = ExtResource("1_lsap7")
@@ -57,6 +58,23 @@ animations = [{
 "loop": true,
 "name": &"walk",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qashf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aetaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_db5xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3x1bl")
+}],
+"loop": true,
+"name": &"walkBackward",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bw7f"]
@@ -91,6 +109,30 @@ func switch_weapon(current_weapon: Weapon) -> Weapon:
 	return current_weapon
 "
 
+[sub_resource type="Gradient" id="Gradient_rdvci"]
+offsets = PackedFloat32Array(0, 0.619048)
+colors = PackedColorArray(1, 1, 1, 1, 0.29, 0.29, 0.29, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uiba8"]
+gradient = SubResource("Gradient_rdvci")
+
+[sub_resource type="Curve" id="Curve_yiybr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hew7x"]
+curve = SubResource("Curve_yiybr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8la8c"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 10.0
+gravity = Vector3(-100, -50, 0)
+scale_min = 0.0
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_hew7x")
+color_ramp = SubResource("GradientTexture1D_uiba8")
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
 collision_mask = 7
@@ -100,9 +142,9 @@ speed = 10.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 5
 sprite_frames = SubResource("SpriteFrames_bwd3i")
-animation = &"idle"
+animation = &"walkBackward"
 autoplay = "idle"
-frame_progress = 0.0583191
+frame_progress = 0.268929
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 12)
@@ -122,3 +164,13 @@ scale = Vector2(0.8, 0.8)
 script = SubResource("GDScript_0jnxp")
 
 [node name="Revolver" parent="WeaponHolder" instance=ExtResource("3_btxic")]
+
+[node name="DustWalk" type="GPUParticles2D" parent="."]
+position = Vector2(-4, 15)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_8la8c")
+texture = ExtResource("4_g0x7e")
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0

@@ -4,8 +4,9 @@ extends CharacterBody2D
 var weapons: Array = []  
 var current_weapon: Weapon = null  
 var secondary_weapon: Weapon = null
-@onready var weapon_holder: Node2D = $WeaponHolder
 
+@onready var weapon_holder: Node2D = $WeaponHolder
+@onready var dust_walk: GPUParticles2D = $DustWalk
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
@@ -31,10 +32,25 @@ func _get_input() -> Vector2:
 	input_vector.y = Input.get_action_strength("move_bottom") - Input.get_action_strength("move_top")
 	return input_vector.normalized()
 
-# Mise à jour physique
 func _physics_process(delta: float) -> void:
 	velocity = _get_input() * speed
 	move_and_slide()
+
+	# Vérifier si le joueur se déplace et dans quelle direction
+	if velocity.length() > 0:
+		# Si le joueur marche dans la direction opposée de l'arme, jouer l'animation "walkBackward"
+		var angle_to_velocity = velocity.angle()
+		var angle_to_weapon = current_weapon.rotation
+
+		if abs(angle_to_velocity - angle_to_weapon) > PI / 2:
+			animated_sprite_2d.play("walkBackward")
+		else:
+			animated_sprite_2d.play("walk")
+		
+		dust_walk.emitting = true
+	else:
+		animated_sprite_2d.play("idle")
+		dust_walk.emitting = false
 
 	# Rotation de l'arme
 	if current_weapon:
@@ -54,6 +70,7 @@ func _physics_process(delta: float) -> void:
 		var mouse_position = get_global_mouse_position()
 		var direction = (mouse_position - global_position).normalized()
 		current_weapon.shoot(global_position, direction)
+
 
 # Fonction pour ajouter une arme à l'inventaire du joueur
 func add_weapon(weapon_scene: PackedScene):
