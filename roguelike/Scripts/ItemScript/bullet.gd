@@ -1,29 +1,29 @@
 extends Area2D
 class_name Bullet
 
-@export var speed: float = 400.0
-var damage: float
-@export var lifetime: float = 3.0
+@export var stats: BulletStats
+
 @onready var explosion_particle: GPUParticles2D = $ExplosionParticle
-@onready var explosion_sound: AudioStreamPlayer2D = $ExplosionSound  # Facultatif pour le son
+@onready var explosion_sound: AudioStreamPlayer2D = $ExplosionSound  
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var trails: GPUParticles2D = $Trails
 
 var direction: Vector2 = Vector2.ZERO
 var time_alive: float = 0.0
-var exploded: bool = false  # Évite les explosions multiples
+var exploded: bool = false 
+var damage: int 
 
 func initialize(position: Vector2, direction: Vector2, damage: float):
 	global_position = position
 	self.direction = direction.normalized()
-	self.damage = damage
+	damage = damage
 
 func _process(delta: float):
-	if not exploded:  # Si la balle n'a pas explosé, continue de se déplacer
-		global_position += direction * speed * delta
+	if not exploded: 
+		global_position += direction * stats.speed * delta
 
 	time_alive += delta
-	if time_alive >= lifetime:
+	if time_alive >= stats.lifetime:
 		queue_free()
 
 # Gestion de la collision avec une zone

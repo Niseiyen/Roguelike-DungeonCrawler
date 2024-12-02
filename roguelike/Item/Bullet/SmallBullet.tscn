@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://c84cmstlf53ws"]
+[gd_scene load_steps=23 format=3 uid="uid://c84cmstlf53ws"]
 
-[ext_resource type="Script" path="res://Weapon/Script/bullet.gd" id="1_yrg7r"]
+[ext_resource type="Script" path="res://Scripts/ItemScript/bullet.gd" id="1_yrg7r"]
+[ext_resource type="Resource" uid="uid://dvvace7g3eqme" path="res://Item/Bullet/BulletRessources/SmallBullet.tres" id="2_aodp8"]
 [ext_resource type="Texture2D" uid="uid://7uhs6rb8y7lr" path="res://Assets/Bullet Pixel 8x8 part 1 (1)/Bullet Pixel 8x8 part 1 G.png" id="2_juq6c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7b4rh"]
@@ -122,7 +123,7 @@ color_ramp = SubResource("GradientTexture1D_ohld4")
 z_index = 6
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_yrg7r")
-speed = 200.0
+stats = ExtResource("2_aodp8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_upcux")

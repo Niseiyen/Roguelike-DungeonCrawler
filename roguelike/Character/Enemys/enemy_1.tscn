@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://by08ndjie4vhn"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/enemy_1.gd" id="1_j1nfg"]
+[ext_resource type="Texture2D" uid="uid://bemlk317jepeg" path="res://Assets/0x72_DungeonTilesetII_v1.7.png" id="1_q0rlj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7tmn"]
+atlas = ExtResource("1_q0rlj")
+region = Rect2(416, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcaqh"]
+atlas = ExtResource("1_q0rlj")
+region = Rect2(432, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brani"]
+atlas = ExtResource("1_q0rlj")
+region = Rect2(448, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tujya"]
+atlas = ExtResource("1_q0rlj")
+region = Rect2(464, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6uaoe"]
+atlas = ExtResource("1_q0rlj")
+region = Rect2(480, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xxeib"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7tmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcaqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brani")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tujya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6uaoe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4t36o"]
+size = Vector2(11, 10)
+
+[node name="Enemy_1" type="CharacterBody2D"]
+script = ExtResource("1_j1nfg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xxeib")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 3)
+shape = SubResource("RectangleShape2D_4t36o")
+
+[node name="hurt_box" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box"]
+position = Vector2(0.5, 3)
+shape = SubResource("RectangleShape2D_4t36o")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+path_postprocessing = 1
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://dhgaorjna5g6u"]
+[gd_scene load_steps=23 format=3 uid="uid://dhgaorjna5g6u"]
 
-[ext_resource type="Script" path="res://Weapon/Script/bullet.gd" id="1_exijo"]
+[ext_resource type="Script" path="res://Scripts/ItemScript/bullet.gd" id="1_exijo"]
+[ext_resource type="Resource" uid="uid://5yvw8qdlg4ui" path="res://Item/Bullet/BulletRessources/ShotgunBullet.tres" id="2_cls08"]
 [ext_resource type="Texture2D" uid="uid://bwsroawrcxfkm" path="res://Assets/Bullet Pixel 8x8 part 1 (1)/Bullet Pixel 8x8 part 1 B.png" id="2_t6oee"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vhyvs"]
@@ -119,8 +120,7 @@ color_ramp = SubResource("GradientTexture1D_e8o5o")
 [node name="ShootgunBullet" type="Area2D"]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_exijo")
-speed = 150.0
-lifetime = 2.0
+stats = ExtResource("2_cls08")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_upcux")

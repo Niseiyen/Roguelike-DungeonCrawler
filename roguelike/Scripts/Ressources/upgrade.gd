@@ -1,4 +1,5 @@
 extends Resource
+class_name Upgrade
 
 @export var name: String
 @export var description: String

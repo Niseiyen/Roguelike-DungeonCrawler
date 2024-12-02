@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bepjmqurticmm"]
 
-[ext_resource type="Script" path="res://Scripts/weapon_pick_up.gd" id="1_c3ad0"]
+[ext_resource type="Script" path="res://Scripts/ItemScript/weapon_pick_up.gd" id="1_c3ad0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqlts"]
 radius = 8.0

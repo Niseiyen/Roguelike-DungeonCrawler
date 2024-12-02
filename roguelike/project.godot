@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 
 DungeonsGeneration="*res://dungeons_generation.gd"
 Events="*res://Events.gd"
+Gamemanager="*res://gamemanager.gd"
 
 [display]
 

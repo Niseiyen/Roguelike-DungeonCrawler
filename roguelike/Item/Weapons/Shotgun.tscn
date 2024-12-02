@@ -1,8 +1,36 @@
 [gd_scene load_steps=13 format=3 uid="uid://6q81nxpxf5rp"]
 
-[ext_resource type="Script" path="res://Weapon/Script/weapon.gd" id="1_p7dlg"]
-[ext_resource type="PackedScene" uid="uid://dhgaorjna5g6u" path="res://Weapon/Bullet/ShotgunBullet.tscn" id="2_4m31w"]
+[ext_resource type="Script" path="res://Scripts/ItemScript/weapon.gd" id="1_p7dlg"]
+[ext_resource type="Resource" uid="uid://cahufejh1lh6j" path="res://Item/Weapons/WeaponRessources/Shotgun.tres" id="2_ckmil"]
 [ext_resource type="Texture2D" uid="uid://bjl7k1mknbw47" path="res://Assets/SnoopethDuckDuck Guns (1)/Pack 1/1px/55.png" id="3_4ny3b"]
+
+[sub_resource type="Animation" id="Animation_so1x2"]
+resource_name = "BaseShotgunShoot"
+length = 0.0667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-15, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.785398, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_qblpj"]
 length = 0.001
@@ -67,34 +95,6 @@ tracks/4/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_so1x2"]
-resource_name = "BaseShotgunShoot"
-length = 0.0667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-15, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, -0.785398, 0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g00un"]
 _data = {
 "BaseShotgunShoot": SubResource("Animation_so1x2"),
@@ -136,13 +136,8 @@ glow_hdr_scale = 0.22
 
 [node name="Shotgun" type="Node2D"]
 script = ExtResource("1_p7dlg")
-fire_rate = 1.0
-damage = 2.0
-projectile_scene = ExtResource("2_4m31w")
-recoil = 15.0
-bullet_count = 4
-camera_shake_intensity = 3
-shoot_animation = "BaseShotgunShoot"
+stats = ExtResource("2_ckmil")
+scene_reference = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 6

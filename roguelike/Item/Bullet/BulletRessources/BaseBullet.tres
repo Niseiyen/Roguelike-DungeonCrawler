@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BulletStats" load_steps=2 format=3 uid="uid://437ike6cv0wl"]
+
+[ext_resource type="Script" path="res://Scripts/Ressources/BulletStats.gd" id="1_m8e4r"]
+
+[resource]
+script = ExtResource("1_m8e4r")
+speed = 200.0
+lifetime = 3.0

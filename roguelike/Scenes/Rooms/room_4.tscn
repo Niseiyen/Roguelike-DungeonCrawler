@@ -1,13 +1,13 @@
-[gd_scene load_steps=46 format=3 uid="uid://cgkgodlqg8cgf"]
+[gd_scene load_steps=46 format=4 uid="uid://ck2cjthod2xvp"]
 
-[ext_resource type="Script" path="res://Scripts/Room.gd" id="1_8euss"]
-[ext_resource type="Texture2D" uid="uid://cyhx4ofvjvucd" path="res://Assets/atlas_walls_low-16x16.png" id="1_kt0dq"]
-[ext_resource type="Texture2D" uid="uid://cm0kvnn3cnoqr" path="res://Assets/atlas_walls_high-16x32.png" id="2_f1ujh"]
-[ext_resource type="Texture2D" uid="uid://bc17hwb6xk5v0" path="res://Assets/atlas_floor-16x16.png" id="3_trdi8"]
-[ext_resource type="Texture2D" uid="uid://bemlk317jepeg" path="res://Assets/0x72_DungeonTilesetII_v1.7.png" id="4_54j4y"]
-[ext_resource type="Script" path="res://Character/Script/PlayerCamera.gd" id="6_4q8p2"]
-[ext_resource type="PackedScene" uid="uid://b5x6frwk48utj" path="res://Scenes/door.tscn" id="6_wac1r"]
-[ext_resource type="Texture2D" uid="uid://dn6pkww1o80jo" path="res://Assets/light.png" id="7_cipny"]
+[ext_resource type="Script" path="res://Scripts/DungeonsScript/Room.gd" id="1_i4pp0"]
+[ext_resource type="Texture2D" uid="uid://cyhx4ofvjvucd" path="res://Assets/atlas_walls_low-16x16.png" id="2_ih1tk"]
+[ext_resource type="Texture2D" uid="uid://cm0kvnn3cnoqr" path="res://Assets/atlas_walls_high-16x32.png" id="3_3pld2"]
+[ext_resource type="Texture2D" uid="uid://bc17hwb6xk5v0" path="res://Assets/atlas_floor-16x16.png" id="4_q0lfc"]
+[ext_resource type="Texture2D" uid="uid://bemlk317jepeg" path="res://Assets/0x72_DungeonTilesetII_v1.7.png" id="5_xnr77"]
+[ext_resource type="PackedScene" uid="uid://b5x6frwk48utj" path="res://Scenes/door.tscn" id="6_0htte"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerCamera.gd" id="7_38pci"]
+[ext_resource type="Texture2D" uid="uid://dn6pkww1o80jo" path="res://Assets/light.png" id="8_whoso"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0jc23"]
 polygon = PackedVector2Array(-3, -8, 2.875, -8, 2.875, 8, -2.75, 8, -3, 8)
@@ -85,7 +85,7 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 polygon = PackedVector2Array(-2.75, -8, 8, -8, 8, 8, -2.75, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wqopl"]
-texture = ExtResource("1_kt0dq")
+texture = ExtResource("2_ih1tk")
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_0jc23")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -8, 3.25, -8, 3, 8, -3.125, 8)
@@ -824,7 +824,7 @@ texture = ExtResource("1_kt0dq")
 16:28/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e4ydc"]
-texture = ExtResource("2_f1ujh")
+texture = ExtResource("3_3pld2")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.625, 2.875, 2.75, 2.75, 2.75, 8, -2.75, 8)
 1:0/0 = 0
@@ -1101,7 +1101,7 @@ texture = ExtResource("2_f1ujh")
 23:7/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o1wc0"]
-texture = ExtResource("3_trdi8")
+texture = ExtResource("4_q0lfc")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -1155,7 +1155,7 @@ polygon = PackedVector2Array(-6.75, 3.375, 6.875, 3.25, 6.75, 8, -6.875, 8)
 polygon = PackedVector2Array(-6.75, -8, 6.75, -8, 6.625, 6.75, -6.625, 6.75)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pehvj"]
-texture = ExtResource("4_54j4y")
+texture = ExtResource("5_xnr77")
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -1821,82 +1821,106 @@ size = Vector2(43, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0l743"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lybr5"]
-size = Vector2(180, 110)
+size = Vector2(236, 118)
 
 [node name="Room1" type="Node2D"]
-script = ExtResource("1_8euss")
+script = ExtResource("1_i4pp0")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD4//v/AAABAAAAAAD5//v/AAAAAAMAAAD6//v/AAAAAAMAAAD7//v/AAAAAAMAAAD8//v/AAAAAAMAAAD9//v/AAAAAAMAAAD+//v/AAAAAAMAAAABAPv/AAAAAAMAAAACAPv/AAAAAAMAAAADAPv/AAAAAAMAAAAEAPv/AAAAAAMAAAAFAPv/AAAAAAMAAAAGAPv/AAAAAAMAAAAHAPv/AAADAAAAAAD4//z/AAAAAAEAAAD4//3/AAAAAAEAAAD4//7/AAAAAAEAAAD4/wAAAAAAAAEAAAD4/wEAAAAAAAEAAAD4/wIAAAAAAAEAAAAHAPz/AAAAAAEAAAAHAP3/AAAAAAEAAAAHAP7/AAAAAAEAAAAHAAAAAAAAAAEAAAAHAAEAAAAAAAEAAAAHAAIAAAAAAAEAAAD4/wMAAAABAAIAAAAHAAMAAAADAAIAAAD5/wMAAAACAAMAAAD6/wMAAAACAAMAAAD7/wMAAAACAAMAAAD8/wMAAAACAAMAAAD9/wMAAAACAAMAAAD+/wMAAAACAAMAAAABAAMAAAACAAMAAAACAAMAAAACAAMAAAADAAMAAAACAAMAAAAEAAMAAAACAAMAAAAFAAMAAAACAAMAAAAGAAMAAAACAAMAAAACAP//AwASABsAAAA=")
 tile_set = SubResource("TileSet_py0ee")
-format = 2
-layer_0/name = "Walls"
-layer_0/tile_data = PackedInt32Array(-196612, 131072, 3, -196611, 131072, 3, -262141, 131072, 3, 196604, 589824, 3, 131075, 0, 3, 131074, 589824, 3, 131073, 65536, 3, 196605, 0, 3, 196606, 196608, 3, -196610, 196608, 3, -262143, 65536, 3, -196613, 0, 3, -196614, 65536, 0, -262139, 196608, 0, -262140, 131072, 3, 131076, 131072, 3, 196603, 131072, 3, 131077, 720896, 3, 196602, 524288, 3, 131066, 0, 1, -131078, 0, 1, -65542, 0, 2, 65530, 0, 0, 5, 0, 0, -131067, 0, 2, -196603, 0, 1, 65541, 0, 1, 2, 1179651, 27, -65539, 1179651, 27)
-layer_1/name = "Ground"
-layer_1/z_index = -99
-layer_1/tile_data = PackedInt32Array(131068, 2, 1, 65532, 2, 0, -4, 2, 0, -65540, 2, 0, -131076, 131074, 0, -131075, 2, 0, -131074, 2, 0, -131073, 2, 0, -196608, 2, 0, -196607, 2, 0, -196606, 2, 0, -131069, 2, 0, -65533, 131074, 0, 3, 2, 0, 65539, 2, 0, 65538, 2, 0, 65537, 2, 0, 1, 131074, 0, 2, 2, 0, -65534, 65538, 2, -131070, 65538, 1, -196605, 2, 0, -131071, 2, 1, -131072, 2, 0, -65537, 2, 0, -65538, 131074, 0, -2, 2, 0, -3, 2, 0, -1, 2, 0, -65536, 2, 0, -65535, 2, 2, -65539, 2, 0, 65533, 131074, 1, 131069, 2, 0, 131070, 2, 0, 131071, 131074, 0, 65536, 2, 0, 0, 2, 0, 65535, 2, 0, 65534, 2, 0, 196606, 2, 0, 196607, 2, 0, 131072, 2, 0, 131073, 2, 0, -196610, 65538, 1, -196609, 65538, 1, -262144, 65538, 1, -262143, 65538, 1, -196603, 327682, 4, 5, 327682, 2, 65541, 327682, 3, -65531, 327682, 6, -131067, 327682, 6, -6, 262146, 4, 65530, 262146, 5, 131066, 262146, 6, -131078, 262146, 5, -65542, 262146, 5, -131077, 2, 0, -65541, 2, 0, -5, 2, 1, 65531, 2, 2, 131067, 2, 0, 65540, 2, 2, -196604, 196610, 1, -131068, 2, 0, -65532, 2, 0, 4, 2, 0)
-layer_2/name = "Decors"
-layer_2/tile_data = PackedInt32Array(-262147, 327683, 5, -196611, 327683, 6, 65534, 1179651, 26, -131075, 327683, 7, -327678, 327683, 0, -262142, 327683, 1, -196606, 327683, 2)
-layer_3/name = "Door_left"
-layer_3/tile_data = PackedInt32Array(-65542, 0, 1, -6, 0, 1)
-layer_4/name = "Door_right"
-layer_4/tile_data = PackedInt32Array(-131067, 0, 1, -65531, 0, 1)
-layer_5/name = "Door_Top"
-layer_5/tile_data = PackedInt32Array(-196610, 131072, 3, -196609, 131072, 3, -262144, 131072, 3, -262143, 131072, 3)
-layer_6/name = "Door_Bottom"
-layer_6/tile_data = PackedInt32Array(196606, 131072, 3, 196607, 131072, 3, 131072, 131072, 3, 131073, 131072, 3)
-layer_7/name = "GroundButtom"
-layer_7/z_index = -1
-layer_8/name = "DecorTop"
-layer_8/z_index = 7
-layer_8/tile_data = PackedInt32Array(-2, 1179651, 25)
+
+[node name="Ground" type="TileMapLayer" parent="."]
+z_index = -99
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD8/wEAAgAAAAEAAAD8/wAAAgAAAAAAAAD8////AgAAAAAAAAD8//7/AgAAAAAAAAD8//3/AgACAAAAAAD9//3/AgAAAAAAAAD+//3/AgAAAAAAAAD///3/AgAAAAAAAAAAAP3/AgAAAAAAAAABAP3/AgAAAAAAAAACAP3/AgAAAAAAAAADAP7/AgAAAAAAAAADAP//AgACAAAAAAADAAAAAgAAAAAAAAADAAEAAgAAAAAAAAACAAEAAgAAAAAAAAABAAEAAgAAAAAAAAABAAAAAgACAAAAAAACAAAAAgAAAAAAAAACAP//AgABAAIAAAACAP7/AgABAAEAAAADAP3/AgAAAAAAAAABAP7/AgAAAAEAAAAAAP7/AgAAAAAAAAD///7/AgAAAAAAAAD+//7/AgACAAAAAAD+////AgAAAAAAAAD9////AgAAAAAAAAD/////AgAAAAAAAAAAAP//AgAAAAAAAAABAP//AgAAAAIAAAD9//7/AgAAAAAAAAD9/wAAAgACAAEAAAD9/wEAAgAAAAAAAAD+/wEAAgAAAAAAAAD//wEAAgACAAAAAAAAAAEAAgAAAAAAAAAAAAAAAgAAAAAAAAD//wAAAgAAAAAAAAD+/wAAAgAAAAAAAAD+/wIAAgAAAAAAAAD//wIAAgAAAAAAAAAAAAIAAgAAAAAAAAABAAIAAgAAAAAAAAD+//z/AgACAAAAAAD///z/AgAAAAAAAAAAAPz/AgAAAAAAAAABAPz/AgAAAAAAAAAFAP3/AgAAAAAAAAAFAAAAAgAAAAAAAAAFAAEAAgABAAEAAAAFAP//AgAAAAAAAAAFAP7/AgAAAAAAAAD6////AgAAAAAAAAD6/wAAAgAAAAAAAAD6/wEAAgABAAAAAAD6//3/AgAAAAAAAAD6//7/AgAAAAAAAAD7//3/AgAAAAAAAAD7//7/AgAAAAAAAAD7////AgAAAAEAAAD7/wAAAgAAAAIAAAD7/wEAAgAAAAAAAAAEAAEAAgAAAAEAAAAEAP3/AgADAAEAAAAEAP7/AgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAD5//z/AgABAAAAAAD6//z/AgAAAAAAAAD7//z/AgAAAAAAAAD8//z/AgAAAAAAAAD9//z/AgAAAAAAAAACAPz/AgAAAAAAAAADAPz/AgAAAAAAAAAEAPz/AgAAAAAAAAAFAPz/AgAAAAAAAAAGAPz/AgAAAAEAAAAGAP3/AgAAAAAAAAAGAP7/AgAAAAAAAAAGAP//AgAAAAAAAAAFAAIAAgABAAIAAAAEAAIAAgAAAAIAAAADAAIAAgAAAAAAAAACAAIAAgAAAAAAAAD9/wIAAgAAAAAAAAD8/wIAAgAAAAAAAAD7/wIAAgAAAAAAAAD6/wIAAgAAAAAAAAD5//3/AgAAAAAAAAD5//7/AgAAAAAAAAD5////AgAAAAAAAAD5/wAAAgAAAAAAAAD5/wEAAgAAAAAAAAD5/wIAAgACAAAAAAD4/wIAAgAAAAAAAAD4/wEAAgAAAAAAAAD4/wAAAgAAAAAAAAD4////AgAAAAAAAAD4//7/AgAAAAAAAAD4//3/AgAAAAAAAAD4//z/AgAAAAAAAAD+/wMAAgAAAAAAAAD//wMAAgAAAAAAAAAAAAMAAgAAAAAAAAABAAMAAgAAAAAAAAAGAAAAAgACAAAAAAAGAAEAAgAAAAAAAAAGAAIAAgAAAAAAAAAHAAIAAgAAAAAAAAAHAAEAAgAAAAAAAAAHAAAAAgAAAAAAAAAHAP//AgAAAAAAAAAHAP7/AgAAAAAAAAAHAP3/AgAAAAAAAAAHAPz/AgAAAAAAAAABAPv/AgAAAAAAAAAAAPv/AgAAAAAAAAD///v/AgAAAAAAAAD+//v/AgAAAAAAAAA=")
+tile_set = SubResource("TileSet_py0ee")
+
+[node name="Decors" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD9//3/AwAFAAcAAAAEAPr/AwAFAAAAAAAEAPv/AwAFAAEAAAAEAPz/AwAFAAIAAAD7//r/AwAFAAAAAAD7//v/AwAFAAEAAAD7//z/AwAFAAIAAAD7//7/AwASABoAAAD7/wAAAwASABoAAAAEAP7/AwASABoAAAAEAAAAAwASABoAAAD/////AwASABoAAAAAAP//AwASABoAAAA=")
+tile_set = SubResource("TileSet_py0ee")
+
+[node name="Door_left" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD4////AAAAAAEAAAA=")
+tile_set = SubResource("TileSet_py0ee")
+
+[node name="Door_right" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAHAP//AAAAAAEAAAA=")
+tile_set = SubResource("TileSet_py0ee")
+
+[node name="Door_Top" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD+//v/AAACAAMAAAD///v/AAACAAMAAAAAAPv/AAACAAMAAAABAPv/AAACAAMAAAA=")
+tile_set = SubResource("TileSet_py0ee")
+
+[node name="Door_Bottom" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD+/wMAAAACAAMAAAD//wMAAAACAAMAAAAAAAMAAAACAAMAAAABAAMAAAACAAMAAAA=")
+tile_set = SubResource("TileSet_py0ee")
+
+[node name="GroundButtom" type="TileMapLayer" parent="."]
+z_index = -1
+use_parent_material = true
+tile_set = SubResource("TileSet_py0ee")
+
+[node name="DecorTop" type="TileMapLayer" parent="."]
+z_index = 7
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAEAP//AwASABkAAAAEAP3/AwASABkAAAAAAP7/AwASABkAAAD///7/AwASABkAAAD7//3/AwASABkAAAD7////AwASABkAAAA=")
+tile_set = SubResource("TileSet_py0ee")
 
 [node name="Doors" type="Node2D" parent="."]
 position = Vector2(-0.5, 48)
 
-[node name="door_bottom" parent="Doors" instance=ExtResource("6_wac1r")]
+[node name="door_bottom" parent="Doors" instance=ExtResource("6_0htte")]
 
 [node name="TeleportationMarker" parent="Doors/door_bottom" index="0"]
-position = Vector2(0.5, 103)
+position = Vector2(0.5, 294)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/door_bottom"]
-position = Vector2(0.5, 0)
+position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_3n565")
 
-[node name="door_top" parent="Doors" instance=ExtResource("6_wac1r")]
+[node name="door_top" parent="Doors" instance=ExtResource("6_0htte")]
 
 [node name="TeleportationMarker" parent="Doors/door_top" index="0"]
-position = Vector2(0.5, -237)
+position = Vector2(2.5, -427)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/door_top"]
-position = Vector2(1, -113)
+position = Vector2(0, -128)
 shape = SubResource("RectangleShape2D_ksgpm")
 
-[node name="door_right" parent="Doors" instance=ExtResource("6_wac1r")]
+[node name="door_right" parent="Doors" instance=ExtResource("6_0htte")]
 
 [node name="TeleportationMarker" parent="Doors/door_right" index="0"]
-position = Vector2(119.5, -67)
+position = Vector2(305.5, -68)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/door_right"]
-position = Vector2(98.5, -57)
+position = Vector2(130, -57)
 shape = SubResource("RectangleShape2D_di7ft")
 
-[node name="door_left" parent="Doors" instance=ExtResource("6_wac1r")]
+[node name="door_left" parent="Doors" instance=ExtResource("6_0htte")]
 
 [node name="TeleportationMarker" parent="Doors/door_left" index="0"]
-position = Vector2(-118.5, -68)
+position = Vector2(-299.5, -68)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/door_left"]
-position = Vector2(-97.5, -58)
+position = Vector2(-128.945, -57)
 shape = SubResource("RectangleShape2D_0l743")
 
 [node name="Player_detection" type="Area2D" parent="."]
+visible = false
 position = Vector2(2, 0)
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("6_4q8p2")
+script = ExtResource("7_38pci")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_detection"]
-position = Vector2(0, -8)
+position = Vector2(-2, -8)
 shape = SubResource("RectangleShape2D_lybr5")
 
 [node name="CameraPos" type="Marker2D" parent="."]
@@ -1905,23 +1929,12 @@ position = Vector2(0, -9)
 [node name="--LIGHT--" type="Node" parent="."]
 
 [node name="PlayerLight" type="PointLight2D" parent="--LIGHT--"]
-visible = false
 z_index = 10
-position = Vector2(40, 10)
+position = Vector2(40, -5)
 energy = 0.1
 shadow_enabled = true
 shadow_filter_smooth = 50.0
-texture = ExtResource("7_cipny")
-texture_scale = 0.3
-
-[node name="PlayerLight2" type="PointLight2D" parent="--LIGHT--"]
-visible = false
-z_index = 10
-position = Vector2(-39, -22)
-energy = 0.1
-shadow_enabled = true
-shadow_filter_smooth = 50.0
-texture = ExtResource("7_cipny")
+texture = ExtResource("8_whoso")
 texture_scale = 0.3
 
 [connection signal="body_entered" from="Player_detection" to="." method="_on_player_detection_body_entered"]

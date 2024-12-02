@@ -2,15 +2,13 @@ extends CharacterBody2D
 
 @export var speed: float = 200.0
 var weapons: Array = []  
-var weapon_holder: Node
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 var current_weapon: Weapon = null  
 var secondary_weapon: Weapon = null
+@onready var weapon_holder: Node2D = $WeaponHolder
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
-	weapon_holder = $WeaponHolder
-	assert(weapon_holder != null, "WeaponHolder node is missing!")
-
 	# Si le joueur a des armes, les ajouter dans l'inventaire
 	for weapon in weapon_holder.get_children():
 		if weapons.size() < 2:
@@ -98,13 +96,19 @@ func _input(event):
 			else:
 				current_weapon = weapons[0]
 				secondary_weapon = weapons[1]
+				
 			update_weapon_display()
-
+		
 # Fonction pour mettre à jour l'affichage de l'arme équipée
 func update_weapon_display():
-	# Afficher l'arme actuelle et cacher la secondaire
 	if current_weapon:
 		current_weapon.show()
 		if secondary_weapon:
 			secondary_weapon.hide()  
 		print("Arme équipée : %s" % current_weapon.name)
+	
+	if current_weapon:
+		Gamemanager.update_sprite_current_weapon(current_weapon.stats.texture)
+		Gamemanager.update_max_ammo(current_weapon.stats.max_ammo)
+		Gamemanager.update_max_ammo_magazin(current_weapon.stats.ammo_per_magazine)
+		Gamemanager.update_current_magazine(current_weapon.current_magazine)

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BulletStats" load_steps=2 format=3 uid="uid://dvvace7g3eqme"]
+
+[ext_resource type="Script" path="res://Scripts/Ressources/BulletStats.gd" id="1_s3dro"]
+
+[resource]
+script = ExtResource("1_s3dro")
+speed = 100.0
+lifetime = 3.0
