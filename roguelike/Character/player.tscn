@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://b68ssparvq58o"]
 
-[ext_resource type="Texture2D" uid="uid://bemlk317jepeg" path="res://Assets/0x72_DungeonTilesetII_v1.7.png" id="1_lsap7"]
+[ext_resource type="Texture2D" uid="uid://bemlk317jepeg" path="res://Assets/Dungeons/0x72_DungeonTilesetII_v1.7.png" id="1_lsap7"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/player.gd" id="1_qa02g"]
 [ext_resource type="PackedScene" uid="uid://0bp7x4xdiv04" path="res://Item/Weapons/Smally.tscn" id="3_btxic"]
 [ext_resource type="Texture2D" uid="uid://tbge5ekc63o" path="res://Assets/map_nodes1.png" id="4_g0x7e"]
@@ -138,6 +138,7 @@ collision_layer = 130
 collision_mask = 135
 script = ExtResource("1_qa02g")
 speed = 10.0
+max_health = 6
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 5

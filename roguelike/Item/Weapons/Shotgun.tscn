@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/ItemScript/weapon.gd" id="1_p7dlg"]
 [ext_resource type="Resource" uid="uid://cahufejh1lh6j" path="res://Item/Weapons/WeaponRessources/Shotgun.tres" id="2_ckmil"]
-[ext_resource type="Texture2D" uid="uid://bjl7k1mknbw47" path="res://Assets/SnoopethDuckDuck Guns (1)/Pack 1/1px/55.png" id="3_4ny3b"]
+[ext_resource type="Texture2D" uid="uid://bjl7k1mknbw47" path="res://Assets/Guns/Pack 1/1px/55.png" id="3_4ny3b"]
 
 [sub_resource type="Animation" id="Animation_so1x2"]
 resource_name = "BaseShotgunShoot"

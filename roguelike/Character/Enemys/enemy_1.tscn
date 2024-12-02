@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://by08ndjie4vhn"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/enemy_1.gd" id="1_j1nfg"]
-[ext_resource type="Texture2D" uid="uid://bemlk317jepeg" path="res://Assets/0x72_DungeonTilesetII_v1.7.png" id="1_q0rlj"]
+[ext_resource type="Texture2D" uid="uid://bemlk317jepeg" path="res://Assets/Dungeons/0x72_DungeonTilesetII_v1.7.png" id="1_q0rlj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7tmn"]
 atlas = ExtResource("1_q0rlj")
@@ -50,10 +50,10 @@ animations = [{
 size = Vector2(11, 10)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p1gwd"]
-radius = 25.7099
+radius = 37.3631
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ai0rb"]
-radius = 152.003
+radius = 107.075
 
 [node name="Enemy_1" type="CharacterBody2D"]
 collision_layer = 130
@@ -71,7 +71,7 @@ shape = SubResource("RectangleShape2D_4t36o")
 
 [node name="hurt_box" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 66
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box"]
 position = Vector2(0.5, 3)

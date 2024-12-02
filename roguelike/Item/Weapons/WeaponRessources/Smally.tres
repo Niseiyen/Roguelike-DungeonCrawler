@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c84cmstlf53ws" path="res://Item/Bullet/SmallBullet.tscn" id="1_80dn4"]
 [ext_resource type="Script" path="res://Scripts/Ressources/WeaponStats.gd" id="2_6o7nj"]
-[ext_resource type="Texture2D" uid="uid://cnpmhlvqr7awc" path="res://Assets/SnoopethDuckDuck Guns (1)/Pack 1/1px/39.png" id="3_y6vhx"]
+[ext_resource type="Texture2D" uid="uid://cnpmhlvqr7awc" path="res://Assets/Guns/Pack 1/1px/39.png" id="3_y6vhx"]
 
 [resource]
 script = ExtResource("2_6o7nj")

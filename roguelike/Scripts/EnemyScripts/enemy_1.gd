@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends CharacterBody2D 
 
 @export var speed = 50
 @onready var nav_agent: NavigationAgent2D = $Navigation/NavigationAgent2D
@@ -34,9 +34,3 @@ func _on_recalculation_timer_timeout() -> void:
 func _on_aggro_range_area_entered(area: Area2D) -> void:
 	print("Aggro Area enter" + area.name)
 	target_node = area.owner
-
-
-func _on_de_aggro_range_area_exited(area: Area2D) -> void:
-	print("DeAggro body exit" + area.name)
-	if area.owner == target_node:
-		target_node = null

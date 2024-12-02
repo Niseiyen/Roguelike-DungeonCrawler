@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/ItemScript/weapon.gd" id="1_yn0dq"]
 [ext_resource type="Resource" uid="uid://bdr2wiv5calhi" path="res://Item/Weapons/WeaponRessources/Revolver.tres" id="2_40niy"]
-[ext_resource type="Texture2D" uid="uid://cghw6yc5tqmu7" path="res://Assets/SnoopethDuckDuck Guns (1)/Pack 1/1px/17.png" id="3_yeps0"]
+[ext_resource type="Texture2D" uid="uid://cghw6yc5tqmu7" path="res://Assets/Guns/Pack 1/1px/17.png" id="3_yeps0"]
 
 [sub_resource type="Animation" id="Animation_mhvwf"]
 resource_name = "BaseWeaponAnimation"

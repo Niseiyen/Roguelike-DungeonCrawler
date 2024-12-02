@@ -5,11 +5,16 @@ var weapons: Array = []
 var current_weapon: Weapon = null  
 var secondary_weapon: Weapon = null
 
+@export var max_health: int
+var current_health: int
+
+
 @onready var weapon_holder: Node2D = $WeaponHolder
 @onready var dust_walk: GPUParticles2D = $DustWalk
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
+	current_health = max_health
 	# Si le joueur a des armes, les ajouter dans l'inventaire
 	for weapon in weapon_holder.get_children():
 		if weapons.size() < 2:
@@ -24,6 +29,9 @@ func _ready() -> void:
 	if weapons.size() > 1:
 		secondary_weapon = weapons[1]
 		secondary_weapon.hide()  
+		
+	Gamemanager.setup_hearts(max_health)
+	Gamemanager.update_hearts(current_health)
 
 # Fonction d'input de déplacement
 func _get_input() -> Vector2:
@@ -38,7 +46,6 @@ func _physics_process(delta: float) -> void:
 
 	# Vérifier si le joueur se déplace et dans quelle direction
 	if velocity.length() > 0:
-		# Si le joueur marche dans la direction opposée de l'arme, jouer l'animation "walkBackward"
 		var angle_to_velocity = velocity.angle()
 		var angle_to_weapon = current_weapon.rotation
 
@@ -70,6 +77,9 @@ func _physics_process(delta: float) -> void:
 		var mouse_position = get_global_mouse_position()
 		var direction = (mouse_position - global_position).normalized()
 		current_weapon.shoot(global_position, direction)
+		
+	if Input.is_action_just_pressed("test_damage"): 
+		take_damage(1)
 
 
 # Fonction pour ajouter une arme à l'inventaire du joueur
@@ -80,17 +90,14 @@ func add_weapon(weapon_scene: PackedScene):
 		weapon_holder.add_child(new_weapon)
 		new_weapon.position = Vector2.ZERO
 		
-		# Si aucune arme n'est équipée, cette arme devient l'arme actuelle
 		if current_weapon == null:
 			current_weapon = new_weapon
 			update_weapon_display()
 		elif current_weapon != null:
-			# Si une arme est déjà équipée, on cache l'ancienne arme et on équipe la nouvelle
 			secondary_weapon = current_weapon
 			current_weapon = new_weapon
 			update_weapon_display()
 	elif weapons.size() == 2:
-		# Si le joueur a déjà 2 armes, on remplace la première
 		weapons.erase(weapons[0])
 
 		var new_weapon = weapon_scene.instantiate()
@@ -98,7 +105,6 @@ func add_weapon(weapon_scene: PackedScene):
 		weapon_holder.add_child(new_weapon)
 		new_weapon.position = Vector2.ZERO
 		
-		# Remplacer l'arme actuelle par la nouvelle
 		secondary_weapon = current_weapon
 		current_weapon = new_weapon
 		update_weapon_display()
@@ -129,3 +135,15 @@ func update_weapon_display():
 		Gamemanager.update_max_ammo(current_weapon.stats.max_ammo)
 		Gamemanager.update_max_ammo_magazin(current_weapon.stats.ammo_per_magazine)
 		Gamemanager.update_current_magazine(current_weapon.current_magazine)
+
+func take_damage(amount: int) -> void:
+	current_health -= amount
+	print(current_health)
+	Gamemanager.update_hearts(current_health)
+	
+	if current_health == 0:
+		die()
+
+
+func die() -> void:
+	print("Le joueur est mort")

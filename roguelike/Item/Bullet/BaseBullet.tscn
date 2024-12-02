@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/ItemScript/bullet.gd" id="1_qdwmt"]
 [ext_resource type="Resource" uid="uid://437ike6cv0wl" path="res://Item/Bullet/BulletRessources/BaseBullet.tres" id="2_qndaf"]
-[ext_resource type="Texture2D" uid="uid://dxi0rrake41bj" path="res://Assets/Bullet Pixel 8x8 part 1 (1)/Bullet Pixel 8x8 part 1 C.png" id="2_uha4k"]
+[ext_resource type="Texture2D" uid="uid://dxi0rrake41bj" path="res://Assets/Bullet/Bullet Pixel 8x8 part 1 C.png" id="2_uha4k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7fm80"]
 atlas = ExtResource("2_uha4k")
