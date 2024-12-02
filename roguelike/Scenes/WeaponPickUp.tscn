@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bepjmqurticmm"]
+[gd_scene load_steps=9 format=3 uid="uid://dq8ml30bhdl8w"]
 
 [ext_resource type="Script" path="res://Scripts/ItemScript/weapon_pick_up.gd" id="1_c3ad0"]
 [ext_resource type="Texture2D" uid="uid://dn6pkww1o80jo" path="res://Assets/light.png" id="2_pb6xu"]

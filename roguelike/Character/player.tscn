@@ -134,8 +134,8 @@ scale_curve = SubResource("CurveTexture_hew7x")
 color_ramp = SubResource("GradientTexture1D_uiba8")
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-collision_layer = 3
-collision_mask = 7
+collision_layer = 130
+collision_mask = 135
 script = ExtResource("1_qa02g")
 speed = 10.0
 
@@ -144,15 +144,15 @@ z_index = 5
 sprite_frames = SubResource("SpriteFrames_bwd3i")
 animation = &"walkBackward"
 autoplay = "idle"
-frame_progress = 0.268929
+frame_progress = 0.699202
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_5bw7f")
 
 [node name="PlayerArea" type="Area2D" parent="."]
-collision_layer = 3
-collision_mask = 7
+collision_layer = 130
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
 position = Vector2(0.5, 12)

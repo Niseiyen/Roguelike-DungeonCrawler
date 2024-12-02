@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://dungeons_generation.gd" id="1_hnt38"]
 [ext_resource type="PackedScene" uid="uid://b68ssparvq58o" path="res://Character/player.tscn" id="2_oeiuw"]
 [ext_resource type="Script" path="res://Scripts/DungeonsScript/Camera_shake.gd" id="3_leobb"]
-[ext_resource type="PackedScene" uid="uid://bepjmqurticmm" path="res://Scenes/WeaponPickUp.tscn" id="4_th42m"]
+[ext_resource type="PackedScene" uid="uid://dq8ml30bhdl8w" path="res://Scenes/WeaponPickUp.tscn" id="4_th42m"]
 [ext_resource type="PackedScene" uid="uid://bhlkho5h6djjm" path="res://Item/Weapons/Revolver.tscn" id="5_513ma"]
 [ext_resource type="Texture2D" uid="uid://cghw6yc5tqmu7" path="res://Assets/SnoopethDuckDuck Guns (1)/Pack 1/1px/17.png" id="6_s1rix"]
 [ext_resource type="PackedScene" uid="uid://by08ndjie4vhn" path="res://Character/Enemys/enemy_1.tscn" id="7_5qp1g"]
@@ -58,5 +58,4 @@ weapon_scene = ExtResource("9_2gcx5")
 pickup_sprite = ExtResource("10_s78jj")
 
 [node name="Enemy_1" parent="." instance=ExtResource("7_5qp1g")]
-position = Vector2(28, -25)
-script = null
+position = Vector2(95, -54)

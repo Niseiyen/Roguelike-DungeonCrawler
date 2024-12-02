@@ -1,30 +1,42 @@
 extends CharacterBody2D
 
-@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
-@onready var player: Node2D = get_node("/root/Scene/Player")  # Référence au joueur, ajustez le chemin si nécessaire
+@export var speed = 50
+@onready var nav_agent: NavigationAgent2D = $Navigation/NavigationAgent2D
 
-@export var speed: float = 100  # Vitesse de déplacement de l'ennemi
-@export var detection_range: float = 500  # Distance à laquelle l'ennemi détecte le joueur
+var target_node = null
+var home_pos = Vector2.ZERO
 
-# Appelé au démarrage du script
 func _ready() -> void:
-	navigation_agent_2d.target_position = player.position  # Initialiser la position cible (celle du joueur)
-
-# Appelé à chaque frame pour suivre le joueur
-func _process(delta: float) -> void:
-	if player.position.distance_to(position) < detection_range:  # Si le joueur est dans la portée
-		navigation_agent_2d.target_position = player.position  # Mettre à jour la cible de l'agent
+	home_pos = self.global_position
+	
+	nav_agent.path_desired_distance = 4
+	nav_agent.target_desired_distance = 4
+	
+func _physics_process(_delta: float) -> void:
+	if nav_agent.is_navigation_finished():
+		return
+		
+	var axis = to_local(nav_agent.get_next_path_position()).normalized()
+	velocity = axis * speed
+	
+	move_and_slide()
+	
+func recal_path():
+	if target_node:
+		nav_agent.target_position = target_node.global_position
 	else:
-		navigation_agent_2d.target_position = position  # Si le joueur est hors portée, l'ennemi s'arrête
+		nav_agent.target_position = home_pos
 
-	# Suivre le chemin calculé par NavigationAgent2D
-	update_velocity(delta)
+func _on_recalculation_timer_timeout() -> void:
+	recal_path()
 
-# Met à jour la vitesse en fonction du chemin trouvé par l'agent
-func update_velocity(delta: float) -> void:
-	var path = navigation_agent_2d.get_current_path()  # Récupérer le chemin actuel
 
-	if path.size() > 0:
-		var direction = (path[0] - position).normalized()  # Direction vers la prochaine position du chemin
-		velocity = direction * speed  # Appliquer la vitesse
-		move_and_slide()  # Déplacer l'ennemi selon la vitesse
+func _on_aggro_range_area_entered(area: Area2D) -> void:
+	print("Aggro Area enter" + area.name)
+	target_node = area.owner
+
+
+func _on_de_aggro_range_area_exited(area: Area2D) -> void:
+	print("DeAggro body exit" + area.name)
+	if area.owner == target_node:
+		target_node = null

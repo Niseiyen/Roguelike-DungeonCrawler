@@ -1877,6 +1877,8 @@ tile_set = SubResource("TileSet_py0ee")
 position = Vector2(-0.5, 48)
 
 [node name="door_bottom" parent="Doors" instance=ExtResource("6_jaquv")]
+collision_layer = 2
+collision_mask = 2
 
 [node name="TeleportationMarker" parent="Doors/door_bottom" index="0"]
 position = Vector2(0.5, 294)
@@ -1886,6 +1888,8 @@ position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_3n565")
 
 [node name="door_top" parent="Doors" instance=ExtResource("6_jaquv")]
+collision_layer = 2
+collision_mask = 2
 
 [node name="TeleportationMarker" parent="Doors/door_top" index="0"]
 position = Vector2(2.5, -427)
@@ -1895,6 +1899,8 @@ position = Vector2(0, -128)
 shape = SubResource("RectangleShape2D_ksgpm")
 
 [node name="door_right" parent="Doors" instance=ExtResource("6_jaquv")]
+collision_layer = 2
+collision_mask = 2
 
 [node name="TeleportationMarker" parent="Doors/door_right" index="0"]
 position = Vector2(305.5, -68)
@@ -1904,6 +1910,8 @@ position = Vector2(130, -57)
 shape = SubResource("RectangleShape2D_di7ft")
 
 [node name="door_left" parent="Doors" instance=ExtResource("6_jaquv")]
+collision_layer = 2
+collision_mask = 2
 
 [node name="TeleportationMarker" parent="Doors/door_left" index="0"]
 position = Vector2(-299.5, -68)
@@ -1915,8 +1923,8 @@ shape = SubResource("RectangleShape2D_0l743")
 [node name="Player_detection" type="Area2D" parent="."]
 visible = false
 position = Vector2(2, 0)
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("7_1gtdj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_detection"]
