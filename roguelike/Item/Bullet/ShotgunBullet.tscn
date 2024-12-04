@@ -119,6 +119,8 @@ color_ramp = SubResource("GradientTexture1D_e8o5o")
 
 [node name="ShootgunBullet" type="Area2D"]
 scale = Vector2(0.6, 0.6)
+collision_layer = 2
+collision_mask = 64
 script = ExtResource("1_exijo")
 stats = ExtResource("2_cls08")
 

@@ -2,7 +2,6 @@ extends Node2D
 class_name Weapon
 
 @export var stats: WeaponStats
-@export var scene_reference: PackedScene
 
 var time_since_last_shot: float = 0
 var current_magazine: int

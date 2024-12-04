@@ -46,18 +46,18 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6jk45"]
+size = Vector2(9, 8)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4t36o"]
 size = Vector2(11, 10)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_p1gwd"]
-radius = 37.3631
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ai0rb"]
 radius = 107.075
 
-[node name="Enemy_1" type="CharacterBody2D"]
-collision_layer = 130
-collision_mask = 203
+[node name="Enemy_1" type="CharacterBody2D" groups=["Enemys"]]
+collision_layer = 128
+collision_mask = 131
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_j1nfg")
@@ -67,44 +67,36 @@ sprite_frames = SubResource("SpriteFrames_xxeib")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 3)
-shape = SubResource("RectangleShape2D_4t36o")
+shape = SubResource("RectangleShape2D_6jk45")
 
-[node name="hurt_box" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 66
+[node name="Enemy1_hitBox" type="Area2D" parent="."]
+collision_layer = 160
+collision_mask = 18
+monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1_hitBox"]
 position = Vector2(0.5, 3)
 shape = SubResource("RectangleShape2D_4t36o")
+debug_color = Color(0.988735, 0, 0.298613, 0.42)
 
-[node name="Navigation" type="Node2D" parent="."]
+[node name="Enemy1_hurtBox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 8
 
-[node name="RecalculationTimer" type="Timer" parent="Navigation"]
-wait_time = 0.1
-autostart = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1_hurtBox"]
+position = Vector2(0.5, 3)
+shape = SubResource("RectangleShape2D_4t36o")
+debug_color = Color(4.33177e-07, 0.636657, 0.402123, 0.42)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
-debug_enabled = true
-debug_path_custom_color = Color(1, 0, 0, 1)
-
-[node name="Aggro" type="Node2D" parent="."]
-
-[node name="AggroRange" type="Area2D" parent="Aggro"]
+[node name="AggroRange" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Aggro/AggroRange"]
-position = Vector2(0, 3)
-shape = SubResource("CircleShape2D_p1gwd")
-
-[node name="DeAggroRange" type="Area2D" parent="Aggro"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Aggro/DeAggroRange"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange"]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_ai0rb")
+debug_color = Color(0.581829, 0.551266, 0, 0.42)
 
-[connection signal="timeout" from="Navigation/RecalculationTimer" to="." method="_on_recalculation_timer_timeout"]
-[connection signal="area_entered" from="Aggro/AggroRange" to="." method="_on_aggro_range_area_entered"]
-[connection signal="area_exited" from="Aggro/DeAggroRange" to="." method="_on_de_aggro_range_area_exited"]
+[connection signal="area_entered" from="Enemy1_hitBox" to="." method="_on_enemy_1_hit_box_area_entered"]
+[connection signal="area_entered" from="Enemy1_hurtBox" to="." method="_on_enemy_1_hurt_box_area_entered"]
+[connection signal="body_entered" from="AggroRange" to="." method="_on_de_aggro_range_body_entered"]

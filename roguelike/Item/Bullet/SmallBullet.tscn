@@ -119,9 +119,12 @@ scale_max = 0.5
 scale_curve = SubResource("CurveTexture_4pk16")
 color_ramp = SubResource("GradientTexture1D_ohld4")
 
-[node name="ARBullet" type="Area2D"]
+[node name="ARBullet" type="Area2D" groups=["Bullets"]]
 z_index = 6
 scale = Vector2(0.4, 0.4)
+collision_layer = 10
+collision_mask = 64
+monitoring = false
 script = ExtResource("1_yrg7r")
 stats = ExtResource("2_aodp8")
 
@@ -151,4 +154,5 @@ lifetime = 0.25
 one_shot = true
 explosiveness = 1.0
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

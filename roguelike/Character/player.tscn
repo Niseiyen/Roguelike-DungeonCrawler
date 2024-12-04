@@ -134,8 +134,8 @@ scale_curve = SubResource("CurveTexture_hew7x")
 color_ramp = SubResource("GradientTexture1D_uiba8")
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-collision_layer = 130
-collision_mask = 135
+collision_layer = 2
+collision_mask = 229
 script = ExtResource("1_qa02g")
 speed = 10.0
 max_health = 6
@@ -149,14 +149,6 @@ frame_progress = 0.699202
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 12)
-shape = SubResource("RectangleShape2D_5bw7f")
-
-[node name="PlayerArea" type="Area2D" parent="."]
-collision_layer = 130
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
-position = Vector2(0.5, 12)
 shape = SubResource("RectangleShape2D_5bw7f")
 
 [node name="WeaponHolder" type="Node2D" parent="."]
@@ -175,3 +167,22 @@ texture = ExtResource("4_g0x7e")
 lifetime = 0.2
 one_shot = true
 explosiveness = 1.0
+
+[node name="PlayerArea" type="Area2D" parent="."]
+collision_layer = 130
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_5bw7f")
+
+[node name="PlayerHurtBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtBox"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_5bw7f")
+debug_color = Color(1.34766e-06, 0.640056, 0.35563, 0.42)
+
+[connection signal="area_entered" from="PlayerHurtBox" to="." method="_on_player_hurt_box_area_entered"]

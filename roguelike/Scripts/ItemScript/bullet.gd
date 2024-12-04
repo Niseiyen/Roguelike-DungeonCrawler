@@ -11,12 +11,12 @@ class_name Bullet
 var direction: Vector2 = Vector2.ZERO
 var time_alive: float = 0.0
 var exploded: bool = false 
-var damage: int 
+var damage: float 
 
-func initialize(position: Vector2, direction: Vector2, damage: float):
+func initialize(position: Vector2, direction: Vector2, weapon_damage: float):
 	global_position = position
 	self.direction = direction.normalized()
-	damage = damage
+	damage = weapon_damage
 
 func _process(delta: float):
 	if not exploded: 
@@ -43,11 +43,9 @@ func explode():
 		return 
 	exploded = true
 
-	# Activer les particules
 	if explosion_particle:
 		explosion_particle.emitting = true
 
-	# Désactiver la balle (facultatif)
 	set_physics_process(false) 
 	animated_sprite_2d.visible = false
 	trails.emitting = false

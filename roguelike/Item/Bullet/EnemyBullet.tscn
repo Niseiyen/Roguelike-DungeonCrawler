@@ -119,6 +119,8 @@ color_ramp = SubResource("GradientTexture1D_ohld4")
 
 [node name="ARBullet" type="Area2D"]
 scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 64
 script = ExtResource("1_l1iau")
 stats = ExtResource("2_hbuwn")
 

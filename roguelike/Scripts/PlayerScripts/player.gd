@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var speed: float = 200.0
 var weapons: Array = []  
@@ -144,6 +145,9 @@ func take_damage(amount: int) -> void:
 	if current_health == 0:
 		die()
 
-
 func die() -> void:
 	print("Le joueur est mort")
+
+func _on_player_hurt_box_area_entered(hitbox: Area2D) -> void:
+	if hitbox.owner.is_in_group("Enemys"):
+		take_damage(1)
