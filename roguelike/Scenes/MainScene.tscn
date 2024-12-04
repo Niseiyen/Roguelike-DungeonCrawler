@@ -37,7 +37,6 @@ speed = 100.0
 [node name="MainCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -9)
-zoom = Vector2(5.21, 5.21)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("3_leobb")
@@ -62,5 +61,7 @@ weapon_scene = ExtResource("9_2gcx5")
 pickup_sprite = ExtResource("10_s78jj")
 
 [node name="Enemy_1" parent="." instance=ExtResource("7_5qp1g")]
-position = Vector2(-98, -58)
-life = 10.0
+position = Vector2(33, -39)
+
+[node name="Enemy_2" parent="." instance=ExtResource("7_5qp1g")]
+position = Vector2(-74, -18)

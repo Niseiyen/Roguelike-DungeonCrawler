@@ -10,7 +10,8 @@ var connected_rooms = {
 	Vector2(0, -1): null
 }
 
-var number_of_connections = 0;
+var number_of_connections = 0
+
 
 func _on_player_detection_body_entered(body: Node2D) -> void:
-	Events.room_enterd.emit(self)
+	Events.room_entered.emit(self)

@@ -9,10 +9,17 @@ const ROOMS = [
 	preload("res://Scenes/Rooms/room_5.tscn"),
 ]
 
+# Préchargez vos différentes scènes d'ennemis
+const ENEMIES = [
+	preload("res://Character/Enemys/enemy_1.tscn"),
+]
+
 @export var min_number_rooms = 6
 @export var max_number_of_rooms = 10
 @export var generation_chance = 20
 @export var room_size = Vector2(400, 400)
+@export var min_enemies_per_room: int = 1
+@export var max_enemies_per_room: int = 3
 
 func _ready():
 	var room_seed = randi() % 9999999999
@@ -51,7 +58,6 @@ func get_random_direction() -> Vector2:
 	var directions = [Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)]
 	return directions[randi() % directions.size()]
 
-
 # Fonction pour générer une salle aléatoire
 func generate_random_room():
 	var room_index = randi() % (ROOMS.size() - 1) + 1  
@@ -73,6 +79,8 @@ func setup_dungeon(dungeon):
 		elif room_instance is CanvasLayer:
 			room_instance.offset = position * room_size
 
+		# Spawner les ennemis dans la salle
+		spawn_enemies_in_room(room_instance)
 		
 func has_node_at_position(position: Vector2) -> bool:
 	for child in get_children():
@@ -131,3 +139,22 @@ func keep_wall_active(room, direction):
 			var layer = room.get_node_or_null("Door_Bottom")
 			if layer:
 				layer.enabled = true
+
+# Fonction pour spawn les ennemis dans une salle
+func spawn_enemies_in_room(room: Node):
+	var num_enemies = randi_range(min_enemies_per_room, max_enemies_per_room)
+	for i in range(num_enemies):
+		var enemy_scene = ENEMIES[randi() % ENEMIES.size()]
+		var enemy_instance = enemy_scene.instantiate()
+		
+		# Générer une position aléatoire dans la salle
+		var random_position = Vector2(
+			randi_range(50, room_size.x - 50),
+			randi_range(50, room_size.y - 50)
+		)
+		
+		if enemy_instance is Node2D:
+			enemy_instance.position = room.position + random_position
+		
+		# Ajouter l'ennemi comme enfant de la salle
+		room.add_child(enemy_instance)

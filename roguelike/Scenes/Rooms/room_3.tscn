@@ -1867,6 +1867,9 @@ z_index = -1
 use_parent_material = true
 tile_set = SubResource("TileSet_py0ee")
 
+[node name="CameraPos" type="Marker2D" parent="."]
+position = Vector2(0, -9)
+
 [node name="DecorTop" type="TileMapLayer" parent="."]
 z_index = 7
 use_parent_material = true
@@ -1931,9 +1934,6 @@ script = ExtResource("7_hkw6e")
 position = Vector2(-2, -8)
 shape = SubResource("RectangleShape2D_lybr5")
 
-[node name="CameraPos" type="Marker2D" parent="."]
-position = Vector2(0, -9)
-
 [node name="--LIGHT--" type="Node" parent="."]
 
 [node name="PlayerLight" type="PointLight2D" parent="--LIGHT--"]
@@ -1953,6 +1953,20 @@ shadow_enabled = true
 shadow_filter_smooth = 50.0
 texture = ExtResource("8_en2iw")
 texture_scale = 0.3
+
+[node name="--ENEMYSPAWNPOINT--" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="--ENEMYSPAWNPOINT--"]
+position = Vector2(80, -32)
+
+[node name="Marker2D2" type="Marker2D" parent="--ENEMYSPAWNPOINT--"]
+position = Vector2(80, 16)
+
+[node name="Marker2D3" type="Marker2D" parent="--ENEMYSPAWNPOINT--"]
+position = Vector2(-81, 16)
+
+[node name="Marker2D4" type="Marker2D" parent="--ENEMYSPAWNPOINT--"]
+position = Vector2(-81, -32)
 
 [connection signal="body_entered" from="Player_detection" to="." method="_on_player_detection_body_entered"]
 

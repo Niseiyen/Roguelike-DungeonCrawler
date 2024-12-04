@@ -117,9 +117,9 @@ scale_max = 2.0
 scale_curve = SubResource("CurveTexture_4pk16")
 color_ramp = SubResource("GradientTexture1D_ohld4")
 
-[node name="ARBullet" type="Area2D"]
+[node name="ARBullet" type="Area2D" groups=["Bullets"]]
 scale = Vector2(0.5, 0.5)
-collision_layer = 2
+collision_layer = 10
 collision_mask = 64
 script = ExtResource("1_l1iau")
 stats = ExtResource("2_hbuwn")

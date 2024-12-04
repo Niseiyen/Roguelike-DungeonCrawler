@@ -117,9 +117,9 @@ scale_max = 2.0
 scale_curve = SubResource("CurveTexture_ekgtk")
 color_ramp = SubResource("GradientTexture1D_e8o5o")
 
-[node name="ShootgunBullet" type="Area2D"]
+[node name="ShootgunBullet" type="Area2D" groups=["Bullets"]]
 scale = Vector2(0.6, 0.6)
-collision_layer = 2
+collision_layer = 10
 collision_mask = 64
 script = ExtResource("1_exijo")
 stats = ExtResource("2_cls08")

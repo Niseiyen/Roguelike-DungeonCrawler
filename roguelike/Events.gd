@@ -1,3 +1,3 @@
 extends Node
 
-signal room_enterd(room)
+signal room_entered(room)

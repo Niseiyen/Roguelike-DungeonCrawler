@@ -6,7 +6,7 @@ var rng = RandomNumberGenerator.new()
 var shake_strength: int = 0.0
 
 func _ready() -> void:
-	Events.room_enterd.connect(func(room: Room):
+	Events.room_entered.connect(func(room: Room):
 		global_position = room.camera_pos.global_position
 	)
 	

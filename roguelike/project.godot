@@ -25,6 +25,11 @@ Gamemanager="*res://gamemanager.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 
+[global_group]
+
+Bullets=""
+Enemys=""
+
 [input]
 
 move_right={
